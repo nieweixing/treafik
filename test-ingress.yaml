@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: traefik-test
+spec:
+  rules:
+  - host: test.k8s.niewx.club #配置ui的域名
+    http:
+      paths:
+      - path: /s1
+        backend:
+          serviceName: svc1
+          servicePort: 8080
+      - path: /s2
+        backend:
+          serviceName: svc2
+          servicePort: 8080
+      - path: /
+        backend:
+          serviceName: svc3
+          servicePort: 8080

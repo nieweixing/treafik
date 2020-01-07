@@ -1,0 +1,49 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: traefik-web-ui
+  namespace: kube-system
+spec:
+  rules:
+  - host: traefik.k8s.niewx.club #配置ui的域名
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: traefik-web-ui
+          servicePort: web
+
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: es-ing
+  namespace: kube-system
+spec:
+  rules:
+  - host: es.k8s.niewx.club #配置ui的域名
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: elasticsearch-logging
+          servicePort: 80
+
+
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: kibana-ing
+  namespace: kube-system
+spec:
+  rules:
+  - host: kibana.k8s.niewx.club #配置ui的域名
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: kibana-logging
+          servicePort: 80
+
+
